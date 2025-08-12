@@ -1,7 +1,7 @@
 // src/utils/alphavantage.ts
 import axios from 'axios';
 
-const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
+const API_KEY = process.env.ALPHA_API_KEY;
 
 export const getStockPrice = async (symbol: string) => {
   const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`;
