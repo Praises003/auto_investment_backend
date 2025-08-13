@@ -6,6 +6,7 @@ import authRoute from "./routes/authRoute";
 import investmentRoute from "./routes/investmentRoute";
 import portfolioRoute from "./routes/portfolioRoute"
 import recurringPaymentRoute from "./routes/recurringPaymentRoute"
+import tradeRoute from './routes/tradeRoute';
 import { notFound, errorHandler } from './middlewares/errorMiddleware';
 
 
@@ -21,6 +22,7 @@ app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/investment", investmentRoute)
 app.use("/api/v1/portfolio", portfolioRoute)
 app.use("/api/v1/recurring", recurringPaymentRoute)
+app.use("/api/v1/trade", tradeRoute)
 
 const PORT = process.env.PORT || 5000;
 

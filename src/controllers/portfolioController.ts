@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "../generated/prisma";
 import { createPortfolioWithInvestmentProfile } from "../services/portfolioService";
 import { getUserPortfolioSummary } from "@/services/portfolioService";
+import { getStockPrice } from "@/utils/alphavantage";
 
 
 
@@ -50,6 +51,36 @@ export const getPortfolioSummaryController = async (req: Request, res: Response)
   try {
     const summary = await getUserPortfolioSummary(userId);
     res.json({ success: true, data: summary });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
+
+export const createTransactionController = async (req: Request, res: Response) => {
+  const userId = (req as any).user?.id;
+  const { symbol, amount, type } = req.body;
+
+  if (!userId || !symbol || !amount || !type) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  try {
+    const price = await getStockPrice(symbol); // ✅ get live price at transaction time
+
+    const transaction = await prisma.transaction.create({
+      data: {
+        userId,
+        symbol,
+        type,
+        amount,
+        price, // ✅ record price used in this transaction
+      },
+    });
+
+    res.status(201).json({ success: true, data: transaction });
   } catch (error: any) {
     res.status(500).json({ success: false, message: error.message });
   }

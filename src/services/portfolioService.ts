@@ -82,13 +82,14 @@ export const getUserPortfolioSummary = async (userId: string) => {
     }
 
     if (tx.type === 'buy') {
-      holdings[tx.symbol].shares += tx.amount; // amount = shares bought
-      holdings[tx.symbol].invested += tx.amount * (await getStockPrice(tx.symbol));
+      holdings[tx.symbol].shares += tx.amount;
+      holdings[tx.symbol].invested += tx.amount * tx.price; // ✅ Use saved transaction price
     } else if (tx.type === 'sell') {
       holdings[tx.symbol].shares -= tx.amount;
-      holdings[tx.symbol].invested -= tx.amount * (await getStockPrice(tx.symbol));
+      holdings[tx.symbol].invested -= tx.amount * tx.price; // optional - depends on how you track cost basis
     }
   }
+
 
   let totalValue = 0;
   let totalInvested = 0;
