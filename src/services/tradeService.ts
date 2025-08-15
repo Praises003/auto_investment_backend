@@ -1,5 +1,5 @@
 // src/services/tradeService.ts
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { getStockPrice } from "@/utils/alphavantage";
 const prisma = new PrismaClient();
 
@@ -31,7 +31,7 @@ export const sellStock = async (userId: string, symbol: string, shares: number) 
     where: { userId, symbol },
   });
 
-  const totalOwned = transactions.reduce((sum, tx) => {
+  const totalOwned = transactions.reduce((sum: any, tx: any) => {
     return tx.type === 'buy' ? sum + tx.amount : sum - tx.amount;
   }, 0);
 

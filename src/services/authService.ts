@@ -1,5 +1,27 @@
+import { PrismaClient } from '@prisma/client';
 
-import { Prisma, PrismaClient, UserProfile } from '../generated/prisma';
+type UserProfile = {
+    id: string;
+    userId: string;
+    address: string | null;
+    city: string | null;
+    region: string | null;
+    country: string | null;
+    postalCode: string | null;
+    dob: Date | null;
+    employment: string | null;
+    annualIncome: number | null;
+    institutionName: string | null;
+    expectedDeposit: number | null;
+    sourceOfFunds: string | null;
+    idImage: string | null;
+    profession: string | null;
+    emergencyName: string | null;
+    emergencyPhone: string | null;
+    kycStatus: string;
+}
+
+
 import bcrypt from "bcryptjs";
 import { RegisterUserInput, LoginInput } from "../validators/userValidator";
 import { v4 as uuid } from "uuid";

@@ -1,5 +1,5 @@
 // src/services/stockService.ts
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { getStockPrice } from "@/utils/alphavantage";
 const prisma = new PrismaClient();
 

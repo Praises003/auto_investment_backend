@@ -1,6 +1,6 @@
 // src/services/portfolioService.ts
 
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { v4 as uuid } from "uuid";
 import { recommendRiskProfile } from "./riskService";
 import { getStockPrice } from "@/utils/alphavantage";

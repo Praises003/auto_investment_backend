@@ -1,5 +1,5 @@
 // scripts/backfillTransactionPrices.ts
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import { getStockPrice } from './alphavantage';
 const prisma = new PrismaClient()
 async function backfillPrices() {

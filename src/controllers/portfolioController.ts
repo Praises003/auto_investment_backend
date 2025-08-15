@@ -1,7 +1,7 @@
 // src/controllers/portfolioController.ts
 
 import { Request, Response } from "express";
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { createPortfolioWithInvestmentProfile } from "../services/portfolioService";
 import { getUserPortfolioSummary } from "@/services/portfolioService";
 import { getStockPrice } from "@/utils/alphavantage";
