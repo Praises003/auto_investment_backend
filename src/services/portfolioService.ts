@@ -83,10 +83,10 @@ export const getUserPortfolioSummary = async (userId: string) => {
 
     if (tx.type === 'buy') {
       holdings[tx.symbol].shares += tx.amount;
-      holdings[tx.symbol].invested += tx.amount * tx.price; // ✅ Use saved transaction price
+      holdings[tx.symbol].invested += tx.amount * (tx.price ?? 0); // ✅ Use saved transaction price
     } else if (tx.type === 'sell') {
       holdings[tx.symbol].shares -= tx.amount;
-      holdings[tx.symbol].invested -= tx.amount * tx.price; // optional - depends on how you track cost basis
+      holdings[tx.symbol].invested -= tx.amount * (tx.price ?? 0); // optional - depends on how you track cost basis
     }
   }
 
